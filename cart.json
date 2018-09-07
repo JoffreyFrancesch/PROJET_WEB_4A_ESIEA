@@ -1,0 +1,43 @@
+[{
+        "id": 0,
+        "quantity": 0,
+        "name": "Globemaster",
+        "price": 17000,
+        "src": "assets/omega_front.png"
+    },
+    {
+        "id": 1,
+        "name": "De Ville",
+        "price": 11000,
+        "src": "assets/omega_2_front.png",
+        "quantity": 0
+    },
+    {
+        "id": 2,
+        "name": "Seamaster",
+        "price": 36000,
+        "src": "assets/omega_3_front.png",
+        "quantity": 0
+    },
+    {
+        "id": 3,
+        "name": "Speedmaster",
+        "price": 4000,
+        "src": "assets/omega_4_front.png",
+        "quantity": 0
+    },
+    {
+        "id": 4,
+        "name": "Seamaster",
+        "price": 15000,
+        "src": "assets/omega_5_front.png",
+        "quantity": 0
+    },
+    {
+        "id": 5,
+        "name": "MoonWatch",
+        "price": 5000,
+        "src": "assets/omega_6_front.png",
+        "quantity": 0
+    }
+]

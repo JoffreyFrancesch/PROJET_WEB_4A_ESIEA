@@ -2,6 +2,14 @@
     max-width: 960px;
 }
 
+input:focus:required:invalid {
+    border: 2px solid #9A031E;
+}
+
+input:required:valid {
+    border: 2px solid #2FBF71;
+}
+
 .footer-cursor {
     cursor: default;
 }

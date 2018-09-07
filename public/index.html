@@ -194,20 +194,23 @@
                     <div class="col-sm">
                         <h3 class="login-type">Nouveau client : </h3>
                         <div class="input-group mb-3">
-                            <input v-model="newUser.firstName" type="text" id="prenom" class="form-control" placeholder="Prénom">
-                            <input v-model="newUser.lastName" type="text" id="nom" class="form-control" placeholder="Nom">
+                            <input v-model="newUser.firstName" type="text" id="prenom" class="form-control" placeholder="Prénom" pattern="[A-Za-z]{3,}"
+                            title="Uniquement des lettres" required>
+                            <input v-model="newUser.lastName" type="text" id="nom" class="form-control" placeholder="Nom" pattern="[A-Za-z]{3,}"
+                            title="Uniquement des lettres" required>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">@</span>
                             </div>
-                            <input v-model="newUser.email" type="email" id="email" class="form-control" placeholder="email">
+                            <input v-model="newUser.email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" class="form-control" placeholder="email" required>
                         </div>
                         <div class="input-group mb-3">
-                            <input v-model="newUser.date" type="date" class="form-control" id="date">
+                            <input v-model="newUser.date" type="date" class="form-control" id="date" required>
                         </div>
                         <div class="input-group mb-3">
-                            <input v-model="newUser.password" class="form-control" type="text" id="password" placeholder="Mot de passe">
+                            <input v-model="newUser.password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" type="password" id="password" placeholder="Mot de passe"
+                            required>
                         </div>
                         <div class="input-group mb-3">
                             <button v-on:click="addUser" class="form-control btn btn-outline-secondary">Connexion</button>
@@ -219,10 +222,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">@</span>
                             </div>
-                            <input v-model="userTemp.email" type="email" id="email" class="form-control" placeholder="email">
+                            <input v-model="userTemp.email" type="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" class="form-control" placeholder="email" required>
                         </div>
                     <div class="input-group mb-3">
-                        <input v-model="userTemp.password" class="form-control" type="text" id="password" placeholder="Mot de passe">
+                        <input v-model="userTemp.password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" id="password" placeholder="Mot de passe" required>
                     </div>
                     <div class="input-group mb-3">
                             <button v-on:click="logUser"  class=" form-control btn btn-outline-secondary">Connexion</button>

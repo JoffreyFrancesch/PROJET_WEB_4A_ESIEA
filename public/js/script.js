@@ -86,6 +86,7 @@ const app = new Vue({
                 })
         },
         onAddUser: function (newUser) {
+            
             this.$http.post('/createUser', {
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,

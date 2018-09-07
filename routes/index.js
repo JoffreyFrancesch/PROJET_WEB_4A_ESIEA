@@ -1,5 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
+
+fs.readFile('data.json', (err,data)=>{
+    
+})
 
 var stockServer = [{
         id: 0,

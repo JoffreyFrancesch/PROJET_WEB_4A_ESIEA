@@ -123,7 +123,7 @@ const app = new Vue({
             });
             if(this.user.email != ''){
                 if(total != 0){
-                    alert("Paiement réussi : le compte FRXX XXXX XXXX XXXX XXX 87 sera bien débité de la somme de " + this.total + " € ");
+                    alert("Paiement réussi : le compte FRXX XXXX XXXX XXXX XXX 87 sera bien débité de la somme de " + total + " € ");
                 } else {
                     alert("Le panier est vide, le compte FRXX XXXX XXXX XXXX XXX 87 ne sera donc pas débité");
                 }
@@ -139,6 +139,7 @@ const app = new Vue({
             this.cartClient.forEach(element => {
                 sum += element.quantity * element.price;
             });
+            this.total = sum;
             return sum;
         }
     },

@@ -16,6 +16,7 @@
 
     <main id="app">
 
+    <!-- Barre de navigation -->
         <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light">
             <a v-on:click="currentPage = 'menu'" class="navbar-brand">La bonne montre</a>
             <div class="collapse navbar-collapse">
@@ -47,6 +48,8 @@
             </div>
         </nav>
 
+
+    <!-- Page principale -->
         <section v-if="currentPage === 'menu'" id="menu">
             <div id="home" class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
                 <div class="col-md-5 p-lg-5 mx-auto my-5">
@@ -57,10 +60,12 @@
             </div>
         </section>
 
+        <!-- Page des produits -->
         <section v-else-if="currentPage === 'produit'" id="produit">
             <div class="album py-5 bg-light">
                 <div class="container">
                     <div class="row">
+                        <!-- Creer une nouvelle carte pour chaque item du stockClient -->
                         <div v-for="(item, index) of stockClient" class="col-md-4">
                             <div class="card mb-4 shadow-sm">
                                 <img class="card-img-top" v-bind:src=item.src alt="Card image cap">
@@ -86,6 +91,7 @@
         </section>
 
 
+        <!-- Section pour le panier  -->
         <section v-else-if="currentPage === 'panier'" id="panier">
             <div id="banderole" class="position-relative overflow-hidden p-3 m-md-3 text-center">
                 <span class="fa-stack fa-lg">
@@ -93,6 +99,7 @@
                 </span>
                 <h2> Voici votre panier</h2>
             </div>
+            <!-- boucle pour afficher tout les items du panier  -->
             <div id="cartObject" v-for="(item, index) of cartClient" v-if="item.quantity >= 1" class="alignement row position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
                 <div class="col-sm"><img class="mini-photo" v-bind:src=item.src alt="montre"></div>
                 <div class="col-sm textCenter">
@@ -123,6 +130,7 @@
 
         </section>
 
+        <!-- Page de redirection pour d'autre marque de montre -->
         <section v-else-if="currentPage === 'autre'" id="autre">
             <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
                 <div class="col-md-5 p-lg-5 mx-auto my-5">
@@ -134,6 +142,47 @@
             </div>
         </section>
 
+        <section v-else-if="currentPage === 'service'" id="service">
+            <div>
+                <div class="text-white position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
+                    <h2 class="text-underline">Retour colis</h2>
+                    <p>Nous reprenons uniquement les colis non ouvert, malheuresement suite à des fraudes nous ne reprenons plus les colis ouvert.</p>
+                    <p>Veuillez nous contacter pour effectuer un retour de votre colis.</p>
+                    <p>Si votre retour est accepter nous retranferons les fonds sous 4 jours ouvré sur votre compte</p>
+                </div>
+                <div class="tposition-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+                    <h2 class="text-underline">Réclamation</h2>
+                    <p>Pour toute réclamation veuillez nous adresser un mail à <a href="mailto:franceschini@et.esiea.fr">franceschini@et.esiea.fr</a></p>
+                    <p>Nous nous engageons a repondre sous 4 jours ouvré à votre mail</p>
+                </div>
+                <div class="text-white position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
+                    <h2 class="text-underline">Avis client</h2>
+                    <div class="row">
+                        <div class="col-sm">
+                            <p>Le site est très reactif et l'envoie est super.</p>
+                            <p class="text-muted"> M.Dupont</p>
+                        </div>
+                        <div class="col-sm">
+                            <p>Le SAV est au top.</p>
+                            <p class="text-muted"> J.Martin</p>
+                        </div>
+                        <div class="col-sm">
+                            <p>Aucun souci du début à la fin, merci pour cette montre.</p>
+                            <p class="text-muted"> C.Norris</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+                    <h2 class="text-underline">Recrutement</h2>
+                    <p>Pour toute candidature spontanée veuillez envoyé un mail à <a href="mailto:franceschini@et.esiea.fr">franceschini@et.esiea.fr</a> avec votre CV et lettre de motivation</p>
+                    <p>Nous nous engageons a repondre sous 4 jours ouvré à votre mail</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- pied du site web  -->
         <footer class="container py-5">
             <div class="row">
                 <div class="col-6 col-md">
@@ -148,10 +197,10 @@
                 <div class="col-6 col-md">
                     <h5 class="footerTop">Service après vente</h5>
                     <ul class="list-unstyled text-small footer-cursor">
-                        <li><a class="text-muted" href="#">Retour colis</a></li>
-                        <li><a class="text-muted" href="#">Réclamation</a></li>
-                        <li><a class="text-muted" href="#">Avis clients</a></li>
-                        <li><a class="text-muted" href="#">Recrutement</a></li>
+                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Retour colis</a></li>
+                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Réclamation</a></li>
+                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Avis clients</a></li>
+                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Recrutement</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">

@@ -1,7 +1,1 @@
-[{
-    "firstname": "joffrey",
-    "lastname": "franceschini",
-    "email": "franceschini@et.esiea.fr",
-    "password": "Joffrey1",
-    "date": "02/03/1997"
-}]
+[{"firstname":"joffrey","lastname":"franceschini","email":"franceschini@et.esiea.fr","password":"Joffrey1","date":"02/03/1997"},{"firstName":"","lastName":"","date":"","email":"","password":""}]

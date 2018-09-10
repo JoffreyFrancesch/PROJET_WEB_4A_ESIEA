@@ -72,7 +72,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <button :disabled="stockClient[index].quantity === 0" v-bind:class="{'btn-warning': stockClient[index].quantity === 0, 'btn-outline-success': stockClient[index].quantity > 0}"
-                                                v-on:click="addToCart(index), textChange(index)" type="button" class="btn btn-sm">{{
+                                                v-on:click="addToCart(index)" type="button" class="btn btn-sm">{{
                                                 item.btn }}</button>
                                         </div>
                                         <small class="text-muted">{{ item.price }} €</small>

@@ -51,7 +51,9 @@ input:required:valid {
 }
 
 #home {
-    background-color: #222222;
+    background : url(../assets/fond.jpg) no-repeat center fixed;
+    height: 600px;
+    /* background-color: #222222; */
     color: whitesmoke;
 }
 

@@ -2,218 +2,217 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-    <title>La bonne montre</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+  <title>La bonne montre</title>
 </head>
 
 <body>
 
-    <main id="app">
+  <main id="app">
 
     <!-- Barre de navigation -->
-        <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light">
-            <a v-on:click="currentPage = 'menu'" class="navbar-brand">La bonne montre</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li v-on:click="currentPage = 'produit'" class="nav-item nav-link ">
-                        <span class="fa-stack fa-lg">
+    <nav class="navbar navbar-expand-sm sticky-top navbar-light bg-light">
+      <a v-on:click="currentPage = 'menu'" class="navbar-brand">La bonne montre</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li v-on:click="currentPage = 'produit'" class="nav-item nav-link ">
+            <span class="fa-stack fa-lg">
                             <i class="fas fa-clock"></i>
                         </span>Produits
-                    </li>
-                    <li v-on:click="currentPage = 'panier'" class="nav-item nav-link">
-                        <span class="fa-stack fa-lg">
+          </li>
+          <li v-on:click="currentPage = 'panier'" class="nav-item nav-link">
+            <span class="fa-stack fa-lg">
                             <i class="fas fa-shopping-cart"></i>
                         </span>Panier
-                    </li>
-                    <li class="nav-item nav-link">
-                        <div v-if="user.email === ''">
-                            <span class="fa-stack fa-lg">
+          </li>
+          <li class="nav-item nav-link">
+            <div v-if="user.email === ''">
+              <span class="fa-stack fa-lg">
                                 <i class="fas fa-user"></i>
                             </span> <button id="show-modal" v-on:click="showModal = true" class="btn btn-outline-secondary">Login</button>
-                            <modal v-if="showModal" v-on:close="showModal = false" @adduser="onAddUser" @loguser="onLogUser"></modal>
-                        </div>
-                        <div v-else>
-                            <span class="fa-stack fa-lg">
+              <modal v-if="showModal" v-on:close="showModal = false" @adduser="onAddUser" @loguser="onLogUser"></modal>
+            </div>
+            <div v-else>
+              <span class="fa-stack fa-lg">
                                 <i class="fas fa-user"></i>
                             </span> Connecté en tant que : {{ user.email }}
-                        </div>
-                    </li>
-                </ul>
             </div>
-        </nav>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
 
     <!-- Page principale -->
-        <section v-if="currentPage === 'menu'" id="menu">
-            <div id="home" class="position-relative overflow-hidden p-3 text-center">
-                <div class="col-md-5 p-lg-5 mx-auto my-5">
-                    <h1 class="display-4 font-weight-normal">Bienvenue</h1>
-                    <p class="lead font-weight-normal">Pleins d'article sont disponibles venez les découvrir...</p>
-                    <a v-on:click="currentPage = 'produit'" class="btn btn-outline-secondary">Tous les produits</a>
-                </div>
-            </div>
-        </section>
+    <section v-if="currentPage === 'menu'" id="menu">
+      <div id="home" class="position-relative overflow-hidden p-3 text-center">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+          <h1 class="display-4 font-weight-normal">Bienvenue</h1>
+          <p class="lead font-weight-normal">Pleins d'article sont disponibles venez les découvrir...</p>
+          <a v-on:click="currentPage = 'produit'" class="btn btn-outline-secondary">Tous les produits</a>
+        </div>
+      </div>
+    </section>
 
-        <!-- Page des produits -->
-        <section v-else-if="currentPage === 'produit'" id="produit">
-            <div class="album py-5 bg-light">
-                <div class="container">
-                    <div class="row">
-                        <!-- Creer une nouvelle carte pour chaque item du stockClient -->
-                        <div v-for="(item, index) of stockClient" class="col-md-4">
-                            <div class="card mb-4 shadow-sm">
-                                <img class="card-img-top" v-bind:src=item.src alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ item.name }}</h5>
-                                    <p class="card-text">{{ item.description }}</p>
-                                    <p class="card-text"><small class="text-muted">Dispo : {{ item.quantity
+    <!-- Page des produits -->
+    <section v-else-if="currentPage === 'produit'" id="produit">
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row">
+            <!-- Creer une nouvelle carte pour chaque item du stockClient -->
+            <div v-for="(item, index) of stockClient" class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" v-bind:src=item.src alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.name }}</h5>
+                  <p class="card-text">{{ item.description }}</p>
+                  <p class="card-text"><small class="text-muted">Dispo : {{ item.quantity
                                             }}</small></p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button :disabled="stockClient[index].quantity === 0" v-bind:class="{'btn-warning': stockClient[index].quantity === 0, 'btn-outline-success': stockClient[index].quantity > 0}"
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button :disabled="stockClient[index].quantity === 0" v-bind:class="{'btn-warning': stockClient[index].quantity === 0, 'btn-outline-success': stockClient[index].quantity > 0}"
                                                 v-on:click="addToCart(index)" type="button" class="btn btn-sm">{{
                                                 item.btn }}</button>
-                                        </div>
-                                        <small class="text-muted">{{ item.price }} €</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+                    <small class="text-muted">{{ item.price }} €</small>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
-        <!-- Section pour le panier  -->
-        <section v-else-if="currentPage === 'panier'" id="panier">
-            <div id="banderole" class="position-relative overflow-hidden p-3 m-md-3 text-center">
-                <span class="fa-stack fa-lg">
+    <!-- Section pour le panier  -->
+    <section v-else-if="currentPage === 'panier'" id="panier">
+      <div class="banderole position-relative overflow-hidden p-3 m-md-3 text-center">
+        <span class="fa-stack fa-lg">
                     <i class="fas fa-shopping-cart"></i>
                 </span>
-                <h2> Voici votre panier</h2>
-            </div>
-            <!-- boucle pour afficher tout les items du panier  -->
-            <div id="cartObject" v-for="(item, index) of cartClient" v-if="item.quantity >= 1" class="alignement row position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
-                <div class="col-sm"><img class="mini-photo" v-bind:src=item.src alt="montre"></div>
-                <div class="col-sm textCenter">
-                    <h4> {{ item.name }}</h4>
-                </div>
-                <div class="col-sm textCenter">
-                    <p> {{item.quantity}} x {{ item.price }} € -- Sous total : {{ semiTotal(index) }} € </p>
-                </div>
-                <div class="col-sm text-center">
-                    <button type="button" v-on:click="addToCart(index)" class="btn btn-outline-success">+</button>
-                    <button type="button" v-on:click="deleteItem(index)" class="btn btn-outline-danger">-</button>
-                </div>
-            </div>
-            <div id="banderole" class="position-relative overflow-hidden p-3 m-md-3 text-right">
-                <h4>Total : {{ totalCart }} €</h4>
-            </div>
-            <div>
-                <div v-if="user.email === ''" class="position-relative overflow-hidden p-3 m-md-3 text-right">
-                    <button v-on:click="paiement()" id="buttonPaiement" class="btn btn-danger align-right" disabled>Veuillez
+        <h2> Voici votre panier</h2>
+      </div>
+      <!-- boucle pour afficher tout les items du panier  -->
+      <div id="cartObject" v-for="(item, index) of cartClient" v-if="item.quantity >= 1" class="alignement row position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <div class="col-sm"><img class="mini-photo" v-bind:src="item.src" alt="montre"></div>
+          <div class="col-sm textCenter">
+            <h4> {{ item.name }}</h4>
+          </div>
+          <div class="col-sm textCenter">
+            <p> {{item.quantity}} x {{ item.price }} € -- Sous total : {{ semiTotal(index) }} € </p>
+          </div>
+          <div class="col-sm text-center">
+            <button type="button" v-on:click="addToCart(index)" class="btn btn-outline-success">+</button>
+            <button type="button" v-on:click="deleteItem(index)" class="btn btn-outline-danger">-</button>
+          </div>
+        </div>
+        <div class="banderole position-relative overflow-hidden p-3 m-md-3 text-right">
+          <h4>Total : {{ totalCart }} €</h4>
+        </div>
+        <div>
+          <div v-if="user.email === ''" class="position-relative overflow-hidden p-3 m-md-3 text-right">
+            <button v-on:click="paiement()" class="buttonPaiement btn btn-danger align-right" disabled>Veuillez
                         vous
                         connecter pour faire un paiement</button>
-                </div>
+          </div>
 
-                <div v-else class="position-relative overflow-hidden p-3 m-md-3 text-right">
-                    <button v-on:click="paiement()" id="buttonPaiement" class="btn btn-success align-right">Proceder au
+          <div v-else class="position-relative overflow-hidden p-3 m-md-3 text-right">
+            <button v-on:click="paiement()" class="buttonPaiement btn btn-success align-right">Proceder au
                         paiement</button>
-                </div>
+          </div>
+        </div>
 
-        </section>
+    </section>
 
-        <!-- Page de redirection pour d'autre marque de montre -->
-        <section v-else-if="currentPage === 'autre'" id="autre">
-            <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-                <div class="col-md-5 p-lg-5 mx-auto my-5">
-                    <h1 class="display-4 font-weight-normal">Nous sommes désolé</h1>
-                    <p class="lead font-weight-normal">Nous n'avons pas encore ces modèles de montres, Rolex, Patek
-                        Philippe, Jaeger LeCoultre</p>
-                    <a v-on:click="currentPage = 'produit'" class="btn btn-outline-primary">Voir les montres Omega</a>
-                </div>
+    <!-- Page de redirection pour d'autre marque de montre -->
+    <section v-else-if="currentPage === 'autre'" id="autre">
+      <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+          <h1 class="display-4 font-weight-normal">Nous sommes désolé</h1>
+          <p class="lead font-weight-normal">Nous n'avons pas encore ces modèles de montres, Rolex, Patek
+            Philippe, Jaeger LeCoultre</p>
+          <a v-on:click="currentPage = 'produit'" class="btn btn-outline-primary">Voir les montres Omega</a>
+        </div>
+      </div>
+    </section>
+
+    <section v-else-if="currentPage === 'service'" id="service">
+      <div>
+        <div class="text-white position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
+          <h2 class="text-underline">Retour colis</h2>
+          <p>Nous reprenons uniquement les colis non ouverts, malheureusement suite à des fraudes, nous ne reprenons plus les colis ouverts.</p>
+          <p>Veuillez nous contacter pour effectuer un retour de votre colis.</p>
+          <p>Si votre retour est accepté nous transférerons les fonds sous 4 jours ouvré sur votre compte.</p>
+        </div>
+        <div class="tposition-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+          <h2 class="text-underline">Réclamation</h2>
+          <p>Pour toute réclamation veuillez nous adresser un mail à : <a href="mailto:franceschini@et.esiea.fr">franceschini@et.esiea.fr</a></p>
+          <p>Nous nous engageons à répondre sous 4 jours ouvrés à votre mail.</p>
+        </div>
+        <div class="text-white position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
+          <h2 class="text-underline">Avis client</h2>
+          <div class="row">
+            <div class="col-sm">
+              <p>Le site est très réactif et l'envoie est super.</p>
+              <p class="text-muted"> M.Dupont</p>
             </div>
-        </section>
-
-        <section v-else-if="currentPage === 'service'" id="service">
-            <div>
-                <div class="text-white position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
-                    <h2 class="text-underline">Retour colis</h2>
-                    <p>Nous reprenons uniquement les colis non ouvert, malheuresement suite à des fraudes nous ne reprenons plus les colis ouvert.</p>
-                    <p>Veuillez nous contacter pour effectuer un retour de votre colis.</p>
-                    <p>Si votre retour est accepter nous retranferons les fonds sous 4 jours ouvré sur votre compte</p>
-                </div>
-                <div class="tposition-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-                    <h2 class="text-underline">Réclamation</h2>
-                    <p>Pour toute réclamation veuillez nous adresser un mail à <a href="mailto:franceschini@et.esiea.fr">franceschini@et.esiea.fr</a></p>
-                    <p>Nous nous engageons a repondre sous 4 jours ouvré à votre mail</p>
-                </div>
-                <div class="text-white position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
-                    <h2 class="text-underline">Avis client</h2>
-                    <div class="row">
-                        <div class="col-sm">
-                            <p>Le site est très reactif et l'envoie est super.</p>
-                            <p class="text-muted"> M.Dupont</p>
-                        </div>
-                        <div class="col-sm">
-                            <p>Le SAV est au top.</p>
-                            <p class="text-muted"> J.Martin</p>
-                        </div>
-                        <div class="col-sm">
-                            <p>Aucun souci du début à la fin, merci pour cette montre.</p>
-                            <p class="text-muted"> C.Norris</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-                    <h2 class="text-underline">Recrutement</h2>
-                    <p>Pour toute candidature spontanée veuillez envoyé un mail à <a href="mailto:franceschini@et.esiea.fr">franceschini@et.esiea.fr</a> avec votre CV et lettre de motivation</p>
-                    <p>Nous nous engageons a repondre sous 4 jours ouvré à votre mail</p>
-                </div>
+            <div class="col-sm">
+              <p>Le SAV est au top.</p>
+              <p class="text-muted"> J.Martin</p>
             </div>
-
-        </section>
-
-
-        <!-- pied du site web  -->
-        <footer class="container py-5">
-            <div class="row">
-                <div class="col-6 col-md">
-                    <h5 class="footerTop">Produits</h5>
-                    <ul class="list-unstyled text-small footer-cursor">
-                        <li v-on:click="currentPage = 'produit'" class="text-muted text-hover">Omega</li>
-                        <li v-on:click="currentPage = 'autre'" class="text-muted text-hover">Rolex</li>
-                        <li v-on:click="currentPage = 'autre'" class="text-muted text-hover">Patek Philippe</li>
-                        <li v-on:click="currentPage = 'autre'" class="text-muted text-hover">Jaeger Lecoultre</li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5 class="footerTop">Service après vente</h5>
-                    <ul class="list-unstyled text-small footer-cursor">
-                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Retour colis</a></li>
-                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Réclamation</a></li>
-                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Avis clients</a></li>
-                        <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Recrutement</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5 class="footerTop">À propos</h5>
-                    <ul class="list-unstyled text-small footer-cursor">
-                        <li><a class="text-muted footer-cursor" href="https://www.github.com/JoffreyFrancesch" target="_blank">Github</a></li>
-                        <li><a class="text-muted footer-cursor" href="mailto:franceschini@et.esiea.fr">Contact</a></li>
-                    </ul>
-                </div>
+            <div class="col-sm">
+              <p>Aucun souci du début à la fin, merci pour cette montre.</p>
+              <p class="text-muted"> C.Norris</p>
             </div>
-        </footer>
+          </div>
+        </div>
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+          <h2 class="text-underline">Recrutement</h2>
+          <p>Pour toute candidature spontanée veuillez envoyé un mail à <a href="mailto:franceschini@et.esiea.fr">franceschini@et.esiea.fr</a> avec votre CV et lettre de motivation</p>
+          <p>Nous nous engageons à répondre sous 4 jours ouvrés à votre mail.</p>
+        </div>
+      </div>
 
-    </main>
+    </section>
+
+
+    <!-- pied du site web  -->
+    <footer class="container py-5">
+      <div class="row">
+        <div class="col-6 col-md">
+          <h5 class="footerTop">Produits</h5>
+          <ul class="list-unstyled text-small footer-cursor">
+            <li v-on:click="currentPage = 'produit'" class="text-muted text-hover">Omega</li>
+            <li v-on:click="currentPage = 'autre'" class="text-muted text-hover">Rolex</li>
+            <li v-on:click="currentPage = 'autre'" class="text-muted text-hover">Patek Philippe</li>
+            <li v-on:click="currentPage = 'autre'" class="text-muted text-hover">Jaeger Lecoultre</li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5 class="footerTop">Service après vente</h5>
+          <ul class="list-unstyled text-small footer-cursor">
+            <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Retour colis</a></li>
+            <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Réclamation</a></li>
+            <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Avis clients</a></li>
+            <li v-on:click="currentPage = 'service'" class="text-muted text-hover">Recrutement</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5 class="footerTop">À propos</h5>
+          <ul class="list-unstyled text-small footer-cursor">
+            <li><a class="text-muted footer-cursor" href="https://www.github.com/JoffreyFrancesch/PROJET_WEB_4A_ESIEA" target="_blank">Github</a></li>
+            <li><a class="text-muted footer-cursor" href="mailto:franceschini@et.esiea.fr">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+  </main>
 
 
 
@@ -226,7 +225,7 @@
 <script src="js/script.js"></script>
 
 <script type="text/x-template" id="modal-template">
-    <transition name="modal">
+  <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">

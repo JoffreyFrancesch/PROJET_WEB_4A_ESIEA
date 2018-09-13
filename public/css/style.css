@@ -34,11 +34,11 @@ input:required:valid {
     align-items: center;
 }
 
-#buttonPaiement {
+.buttonPaiement {
     float: right;
 }
 
-#banderole {
+.banderole {
     border-radius: 10px;
     background-color: #55DAAF;
     color: whitesmoke;
